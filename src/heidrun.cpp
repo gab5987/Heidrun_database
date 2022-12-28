@@ -57,7 +57,7 @@ Heidrun_query createTable(char *dbName, char *tableName, char *columns) {
         SD.mkdir(buff);
 
         File tbl = SD.open(tableFile, FILE_WRITE);
-        tbl.println(columns);
+        tbl.println(columns + ' ');
         tbl.close();
 
         File idx = SD.open(indexFile, FILE_WRITE);
@@ -90,7 +90,7 @@ Heidrun_query insertRow(char *dbName, char *tableName, char *values) {
     Serial.println(actualIndex);
 
     File row = SD.open(buff + "/" + String(actualIndex + 1) + ".row", FILE_WRITE);
-    row.println(values);
+    row.println(values + ' ');
     row.close();
 
     idx = SD.open(indexFile, FILE_WRITE);
