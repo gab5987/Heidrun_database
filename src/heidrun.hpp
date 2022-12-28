@@ -24,14 +24,25 @@
 #include <SPI.h> // SPI thingo
 
 #include <Arduino.h>
+#include <vector>
 
 #include "num_codes.h"
 
+class Heidrun_query {
+    public:
+        Heidrun_query(std::vector <String> result, int8_t status) {
+            this->result = result;
+            this->status = status;
+        }
+    public:
+        std::vector <String> result;
+        int8_t status;
+};
 class Heidrun_db {
     public:
         int8_t begin();
         int8_t createDatabase(char *dbName);
-        int8_t createTable(char *dbName, char *tableName, char *columns);
+        Heidrun_query run_sql(char *dbName, char *dbTable, uint8_t op, char* items);
 };
 
 #endif
